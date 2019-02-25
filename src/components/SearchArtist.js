@@ -18,7 +18,6 @@ class SearchArtist extends Component {
 
   render() {
     const { data } = this.props.artistsList;
-    // console.log(data);
 
     const renderItem = item => (
       <Option key={item.artistId}>{item.artistName}</Option>

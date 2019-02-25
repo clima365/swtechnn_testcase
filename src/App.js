@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Input } from "antd";
+import { Input, Icon } from "antd";
 import { Header, SearchArtist, SelectAlbum, SongCard } from "./components";
 
 const Layout = styled.div`
@@ -34,6 +34,18 @@ const CardsContainer = styled.div`
   grid-template-columns: repeat(auto-fit, 300px);
   justify-content: center;
   padding: 32px 0;
+`;
+
+const LoadingContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 56px 0;
+
+  svg {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 class App extends Component {
@@ -88,6 +100,10 @@ class App extends Component {
       <SongCard key={i} song={item} />
     ));
 
+    const isLoading = currentArtist.loading || currentAlbum.loading;
+
+    const isError = currentAlbum.error || currentArtist.error;
+
     return (
       <Layout>
         <Content>
@@ -103,11 +119,19 @@ class App extends Component {
               disabled={itemsToShow.length > 0 ? false : true}
             />
           </InputBar>
-          {itemsToShow.length === 0 ? (
-            <Text>Please, input artist name ;)</Text>
-          ) : (
-            <CardsContainer>{renderList}</CardsContainer>
+          {!isLoading && isError && <Text>Something went wrong ;(</Text>}
+          {isLoading && !isError && (
+            <LoadingContainer>
+              <Icon type="loading" />
+            </LoadingContainer>
           )}
+          {!isLoading &&
+            !isError &&
+            (itemsToShow.length === 0 ? (
+              <Text>Please, input artist name ;)</Text>
+            ) : (
+              <CardsContainer>{renderList}</CardsContainer>
+            ))}
         </Content>
       </Layout>
     );
