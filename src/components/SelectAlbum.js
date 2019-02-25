@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import { Select } from "antd";
 import { selectCurrentAlbum } from "../actions";

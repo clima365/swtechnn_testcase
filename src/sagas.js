@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   GET_ARTISTS_ASYNC,
   GET_ARTISTS,

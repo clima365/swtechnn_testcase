@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Button, Input, AutoComplete } from "antd";
+import { Input, AutoComplete } from "antd";
 import { connect } from "react-redux";
 import { getArtists, selectCurrentArtist } from "../actions";
 
